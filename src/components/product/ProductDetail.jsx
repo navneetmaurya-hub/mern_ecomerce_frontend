@@ -21,7 +21,7 @@ const ProductDetail = () => {
     const navigate = useNavigate();
     // const [product,setProduct]=useState([]);
     const [product,setProduct]=useState(null);
-    const url="https://your-backend-name.vercel.app/api";  
+    const url="https://mern-ecommerce-backend1-zlf7.onrender.com/api";  
 
     // useEffect(() => {
 
