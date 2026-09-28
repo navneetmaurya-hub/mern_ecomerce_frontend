@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AppState = (props) => {
     // const url="http://localhost:3000/api";
-    const url="https://mern-ecomerce-backend-ed2x-ri35p0c9r-navneet-maurya.vercel.app/api";
+    const url="https://mern-ecommerce-backend1-zlf7.onrender.com/api";
     const [products,setProducts]=useState([]);
     const [token,settoken]=useState([]);
      const [isAuthenticated,setIsAuthenticated]=useState(false);
