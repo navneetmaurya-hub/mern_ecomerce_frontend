@@ -21,7 +21,7 @@ const ProductDetail = () => {
     const navigate = useNavigate();
     // const [product,setProduct]=useState([]);
     const [product,setProduct]=useState(null);
-    const url="http://localhost:3000/api";  
+    const url="https://your-backend-name.vercel.app/api";  
 
     // useEffect(() => {
 
