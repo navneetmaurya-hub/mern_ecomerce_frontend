@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import AppContext from '../context/AppContext.jsx';
 import RelatedProduct from './RelatedProduct.jsx';
 
@@ -17,29 +18,46 @@ const ProductDetail = () => {
   
   const [price, setPrice] = useState(0);
     const {id}=useParams(); 
-    const [product,setProduct]=useState([]);
+    const navigate = useNavigate();
+    // const [product,setProduct]=useState([]);
+    const [product,setProduct]=useState(null);
     const url="http://localhost:3000/api";  
 
-    useEffect(() => {
-        console.log("hello");
-        const fetchProduct = async () => {
-            const api=await axios.get(`${url}/products/${id}`,{
-              headers:{
-                'Content-Type': 'application/json',
-              },
-              withCredentials:true 
-            });
+    // useEffect(() => {
+
+    //     console.log("hello");
+    //     const fetchProduct = async () => {
+    //         const api=await axios.get(`${url}/products/${id}`,{
+    //           headers:{
+    //             'Content-Type': 'application/json',
+    //           },
+    //           withCredentials:true 
+    //         });
            
-            setProduct(api.data.product);
-            setPrice(api.data.product.price);
-        };
-        fetchProduct();
-    },[id]);
+    //         setProduct(api.data.product);
+    //         setPrice(api.data.product.price);
+    //     };
+    //     fetchProduct();
+    // },[id,url]);
     //  
    
 
  
-
+useEffect(() => {
+    const fetchProduct = async () => {
+        try {
+            const api = await axios.get(`${url}/products/${id}`, {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
+            });
+            setProduct(api.data.product);
+            setPrice(api.data.product.price);
+        } catch (err) {
+            console.log("Error aaya:", err);
+        }
+    };
+    fetchProduct();
+}, [id, url]);
  
 
 // 
@@ -96,9 +114,12 @@ const ProductDetail = () => {
     }
  }
 
+ if (!product) return <h3 className="text-center text-light my-5">Loading...</h3>;
+
 //  
   return (
       <>  
+       
        <div className="container">
             <div className="container text-center my-5" style={{ display: 'flex', justifyContent: 'space-evenly', alignItem: 'center' }}>
               <div className="left">

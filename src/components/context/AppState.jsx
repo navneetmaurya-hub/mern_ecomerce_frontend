@@ -6,8 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const AppState = (props) => {
-    // const url="http://localhost:3000/api";
-    const url="https://mern-ecomerce-backend-ed2x-ri35p0c9r-navneet-maurya.vercel.app/api";
+    const url="http://localhost:3000/api";
+    
     const [products,setProducts]=useState([]);
     const [token,settoken]=useState([]);
      const [isAuthenticated,setIsAuthenticated]=useState(false);
@@ -90,6 +90,7 @@ const AppState = (props) => {
               },
               withCredentials:true 
             });
+         
 
       toast.success(api.data.message, {
         position: "top-center",
@@ -135,7 +136,7 @@ const AppState = (props) => {
               },
               withCredentials:true,
             });
-           
+            
             setuser(api.data.user);
           
         };
@@ -151,7 +152,8 @@ const AppState = (props) => {
               },
               withCredentials:true 
             });
-           setreload(!reload);
+           setreload(prev => !prev);
+           await userCart();
             toast.success(api.data.message, {
                 position: "top-center",
                 autoClose: 1460,
@@ -174,6 +176,7 @@ const AppState = (props) => {
               },
               withCredentials:true,
             });
+          
             console.log(api.data.cart);
             setcart(api.data.cart);
           
@@ -188,7 +191,8 @@ const AppState = (props) => {
               },
               withCredentials:true,
             });
-           setreload(!reload);
+           setreload(prev => !prev);
+           await userCart();
             toast.success(api.data.message, {
                 position: "top-center",
                 autoClose: 1460,
@@ -214,6 +218,7 @@ const AppState = (props) => {
               withCredentials:true,
             });
             setreload(!reload);
+            await userCart();
             toast.success(api.data.message,{
                 position: "top-center",
                 autoClose: 1460,
@@ -239,6 +244,7 @@ const AppState = (props) => {
               withCredentials:true,
             });
             setreload(!reload);
+            await userCart();
             toast.success(api.data.message,{
                 position: "top-center",
                 autoClose: 1460,
@@ -264,6 +270,7 @@ const AppState = (props) => {
               withCredentials:true,
             });
             setreload(!reload);
+            await getAddress();
             toast.success(api.data.message,{
                 position: "top-center",
                 autoClose: 1460,
